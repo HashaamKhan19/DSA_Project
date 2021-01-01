@@ -1,15 +1,17 @@
 #include <iostream>
-#include <iomanip>
-#include <windows.h>
-
 using namespace std;
+
+// class TMS()
+// {
 
 struct Booking
 {
 public:
-    int SeatNumber;
+    // TMS obj;
+    //int SeatNumber;
     bool IsBooked;
     string BookedBy = "Hashaam";
+    int SeatNumber = rand() % 100; // v1 in the range 0 to 99
 
     Booking()
     {
@@ -25,7 +27,6 @@ public:
 
     int RouteID;
 };
-
 Booking *head = NULL;
 
 bool isSeatAlreadyTaken(int routeId, int seatNumber)
@@ -33,14 +34,13 @@ bool isSeatAlreadyTaken(int routeId, int seatNumber)
     Booking *current = head;
     while (current != NULL)
     {
-        // In fact this should be seatNumber
         if (current->RouteID == routeId && current->RouteID == seatNumber)
         {
             return true;
         }
         current = current->next;
     }
-    //
+
     return false;
 }
 
@@ -118,7 +118,6 @@ void printBookings()
     if (head == NULL)
     {
         cout << "There are no Seats currently Booked!\n " << endl;
-        // runner();
     }
     else
     {
@@ -132,6 +131,7 @@ void printBookings()
 
 void runner()
 {
+    int SeatNumber = rand() % 100;
     while (true)
     {
         cout << "Enter 1 to Book a Ticket" << endl;
@@ -156,10 +156,8 @@ void runner()
                  << endl;
             cout << "--> ";
             cin >> routeId;
-            //
-            // Hardcoded, replace second parameter with Seat Number
-            //
-            if (createBooking(routeId, routeId))
+
+            if (createBooking(routeId, SeatNumber))
             {
                 cout << "Your Seat has been booked " << endl
                      << endl;
@@ -169,24 +167,12 @@ void runner()
                 cout << "*** Sorry! The seat is already taken" << endl
                      << endl;
             }
-            // bool isBooked = createBooking(routeId, routeId);
-            // if (isBooked)
-            // {
-            //     cout << "*** Seat has been booked" << endl
-            //          << endl;
-            // }
-            // else
-            // {
-            //     cout << "*** Sorry seat is already taken" << endl
-            //          << endl;
-            // }
             break;
 
         case 2:
-            // cout << "Printing Bookings :" << endl
-            //      << endl;
             printBookings();
             break;
+
         case 3:
             //cout << "Select a Booking :" << endl;
             //printBookings();
@@ -232,3 +218,10 @@ int main()
     runner();
     return 1;
 }
+
+/*
+        shortest path using prims algorithm???? //will try to do that, not sure if this will work though
+        make object of this class and store user data in it
+        write that object into a file and similarly read from that file and print onto the terminal
+    */
+// }
