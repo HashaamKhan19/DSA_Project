@@ -34,7 +34,7 @@ bool isSeatAlreadyTaken(int routeId, int seatNumber)
     Booking *current = head;
     while (current != NULL)
     {
-        if (current->RouteID == routeId && current->RouteID == seatNumber)
+        if (current->RouteID == routeId && current->SeatNumber == seatNumber)
         {
             return true;
         }
